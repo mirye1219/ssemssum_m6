@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 쌤씀 메모
 
-## Getting Started
+선생님이 오늘 본 장면을 짧게 남기는 원아 메모 MVP입니다.  
+미션 5 랜딩에서 말한 “짧은 메모로 시작”을 **등록 → 목록 → 상세 → 수정 → 삭제** 한 사이클로 검증합니다.
 
-First, run the development server:
+데모 데이터만 사용합니다. 실제 원아 개인정보는 넣지 마세요. 로그인과 사용자별 권한은 미션 7에서 적용합니다.
+
+## 핵심 기능
+
+| 화면 | 경로 | 하는 일 |
+| --- | --- | --- |
+| 목록 | `/` | 최신 메모를 카드로 보고 페이지를 넘김 |
+| 등록 | `/memos/new` | 이름, 날짜, 내용, 선택 사진을 저장 |
+| 상세 | `/memos/[id]` | 저장된 메모와 사진을 확인 |
+| 수정 | `/memos/[id]/edit` | 기존 값을 불러와 다시 저장 |
+| 삭제 | 상세 화면 | 확인 후 메모와 사진을 삭제 |
+
+## 테이블 구조 (`memos`)
+
+| 컬럼 | 타입 | 필수 | 설명 |
+| --- | --- | --- | --- |
+| `id` | uuid | O | 고유 식별자 |
+| `child_name` | text | O | 원아 이름 (1~20자, 데모용) |
+| `memo_date` | date | O | 관찰 날짜 |
+| `content` | text | O | 메모 본문 (5~1000자) |
+| `image_path` | text | X | Storage 경로 |
+| `created_at` | timestamptz | O | 생성 시각 |
+| `updated_at` | timestamptz | O | 수정 시각 |
+
+이미지 버킷: `memo-images` (공개 읽기)
+
+## 실행 방법
+
+1. Supabase SQL Editor에서 `supabase/schema.sql`을 실행합니다.
+2. 환경 변수를 로컬에만 넣습니다.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`.env.local` 이름만 맞추면 됩니다. 실제 값과 키는 이 문서에 적지 않습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. 앱을 켭니다.
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 배포
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- GitHub 저장소: (푸시 후 작성)
+- Vercel 배포 URL: (배포 후 작성)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Vercel에도 같은 환경 변수 이름을 넣습니다. `.env.local`은 GitHub에 올리지 않습니다.
 
-## Deploy on Vercel
+## QA 체크리스트
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| 시나리오 | 결과 | 점검 |
+| --- | --- | --- |
+| 빈 값 제출 | 필드별 한글 에러 | [ ] |
+| 잘못된 파일 형식/크기 | 이미지 에러 | [ ] |
+| 등록 후 목록·상세 반영 | 새 카드와 상세 내용 보임 | [ ] |
+| 새로고침 후 데이터 유지 | 그대로 유지 | [ ] |
+| 수정 후 화면 반영 | 상세에 새 값 | [ ] |
+| 삭제 후 화면 반영 | 목록에서 사라짐 | [ ] |
+| 없는 상세 주소 | 없는 메모 안내 | [ ] |
+| 사진 없이 등록 | “사진 없음” 처리 | [ ] |
+| 업로드 실패 | 저장 실패 안내 | [ ] |
