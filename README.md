@@ -54,7 +54,7 @@ npm run dev
 
 ## 배포
 
-- GitHub 저장소: (푸시 후 작성)
+- GitHub 저장소: https://github.com/mirye1219/ssemssum_m6
 - Vercel 배포 URL: (배포 후 작성)
 
 Vercel에도 같은 환경 변수 이름을 넣습니다. `.env.local`은 GitHub에 올리지 않습니다.
