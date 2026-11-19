@@ -33,3 +33,5 @@
 2. 새 메모 → 등록 → 상세 → 수정 → 삭제.
 3. Amplitude Live events에서 위 이름이 순서대로 보이는지 확인.
 4. GA4 실시간에서 같은 세션의 페이지 조회가 보이는지 확인.
+
+QA 결과(2026-11-19): Amplitude에서 `page_viewed` → `cta_new_memo_clicked` → `memo_create_started` → `memo_created` → `memo_detail_viewed` 수신. GA4 실시간에서 `/`, `/memos/new`, `/memos/[id]` 수신. 증적은 `docs/deliverables`에 있습니다.

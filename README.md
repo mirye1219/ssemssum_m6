@@ -47,7 +47,7 @@ NEXT_PUBLIC_AMPLITUDE_API_KEY=
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
 ```
 
-지표와 이벤트 설계는 `docs/METRICS.md`, `docs/TRACKING_PLAN.md`에 있습니다.
+지표·트래킹 플랜·수신 스크린샷은 [docs/deliverables](docs/deliverables/README.md)에 모아 두었습니다.
 
 UTM 예시 (배포 URL 기준):
 
