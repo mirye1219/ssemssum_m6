@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Header } from "@/components/header";
 import "./globals.css";
 
@@ -15,8 +16,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className="h-full">
       <body className="min-h-full bg-surface-warm text-ink-900">
-        <Header />
-        <main className="mx-auto w-full max-w-5xl px-5 py-10">{children}</main>
+        <AnalyticsProvider>
+          <Header />
+          <main className="mx-auto w-full max-w-5xl px-5 py-10">{children}</main>
+        </AnalyticsProvider>
       </body>
     </html>
   );

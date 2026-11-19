@@ -43,7 +43,17 @@ cp .env.example .env.local
 ```
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+NEXT_PUBLIC_AMPLITUDE_API_KEY=
+NEXT_PUBLIC_GA_MEASUREMENT_ID=
 ```
+
+지표와 이벤트 설계는 `docs/METRICS.md`, `docs/TRACKING_PLAN.md`에 있습니다.
+
+UTM 예시 (배포 URL 기준):
+
+- 카카오톡: https://ssemssum-m6.vercel.app/?utm_source=kakao&utm_medium=social&utm_campaign=memo_mvp
+- 네이버 블로그: https://ssemssum-m6.vercel.app/?utm_source=naver_blog&utm_medium=referral&utm_campaign=memo_mvp
+- 인스타그램: https://ssemssum-m6.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=memo_mvp
 
 3. 앱을 켭니다.
 

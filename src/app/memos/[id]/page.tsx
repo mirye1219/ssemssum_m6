@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { DeleteButton } from "@/components/delete-button";
+import { MemoDetailTracker } from "@/components/memo-detail-tracker";
 import { getMemo, publicImageUrl } from "@/lib/memos";
 
 export default async function MemoDetailPage({
@@ -33,6 +35,9 @@ export default async function MemoDetailPage({
 
   return (
     <article className="mx-auto max-w-2xl space-y-6">
+      <Suspense>
+        <MemoDetailTracker hasImage={Boolean(memo.image_path)} />
+      </Suspense>
       <p className="text-sm text-brand-700">{memo.memo_date}</p>
       <h1 className="text-3xl font-semibold">{memo.child_name}</h1>
       {image ? (

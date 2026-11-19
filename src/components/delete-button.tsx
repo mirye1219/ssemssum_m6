@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { deleteMemo } from "@/app/actions/memos";
+import { track } from "@/lib/analytics";
 
 export function DeleteButton({ id }: { id: string }) {
   const [pending, startTransition] = useTransition();
@@ -17,6 +18,7 @@ export function DeleteButton({ id }: { id: string }) {
             return;
           }
           startTransition(async () => {
+            track("memo_deleted");
             const result = await deleteMemo(id);
             if (result && !result.ok) {
               setError(result.message);

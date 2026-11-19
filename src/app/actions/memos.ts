@@ -82,7 +82,7 @@ export async function createMemo(
     }
 
     revalidatePath("/");
-    redirect(`/memos/${data.id}`);
+    redirect(`/memos/${data.id}?src=created`);
   } catch (error) {
     if (isRedirect(error)) throw error;
     return {
@@ -138,7 +138,7 @@ export async function updateMemo(
 
     revalidatePath("/");
     revalidatePath(`/memos/${id}`);
-    redirect(`/memos/${id}`);
+    redirect(`/memos/${id}?src=updated`);
   } catch (error) {
     if (isRedirect(error)) throw error;
     return {
